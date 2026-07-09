@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BottlePure Envision | Plastic Freedom Mission</title>
+<meta name="description" content="BottlePure Envision converts corporate CSR investment into measurable plastic reduction through a nationwide network of manufacturing and distribution partners.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1F3EA;
+    --paper-alt:#E8EBDD;
+    --card:#FBFCF8;
+    --ink:#10241C;
+    --ink-soft:#44544A;
+    --ink-faint:#7C8A7F;
+    --moss:#4C7A52;
+    --moss-deep:#2F4E34;
+    --clay:#C1653B;
+    --clay-deep:#A24F2C;
+    --gold:#C99A3A;
+    --line:rgba(16,36,28,0.14);
+    --line-soft:rgba(16,36,28,0.08);
+    --shadow:0 8px 30px rgba(16,36,28,0.08);
+    --radius:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .display{font-family:'Space Grotesk',sans-serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--moss-deep);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+    font-weight:500;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--clay);
+    display:inline-block;
+  }
+  section{position:relative;}
+  .section-pad{padding:100px 0;}
+  @media(max-width:768px){ .section-pad{padding:64px 0;} }
+
+  /* ===== Buttons ===== */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:999px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(16,36,28,0.25); }
+  .btn-clay{ background:var(--clay); color:#fff; }
+  .btn-clay:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(193,101,59,0.35); background:var(--clay-deep); }
+  .btn-ghost{ background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .btn-ghost:hover{ background:rgba(16,36,28,0.05); }
+  .btn-on-dark{ background:var(--gold); color:var(--ink); }
+  .btn-on-dark:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(201,154,58,0.35); }
+  .btn-outline-dark{ background:transparent; color:var(--paper); border:1px solid rgba(241,243,234,0.35); }
+  .btn-outline-dark:hover{ background:rgba(241,243,234,0.1); }
+
+  /* ===== Header ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(241,243,234,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+    transition:background .3s ease;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px;
+  }
+  .logo-mark{
+    width:34px; height:34px; border-radius:9px;
+    background:var(--moss-deep);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .logo-mark svg{ width:18px; height:18px; }
+  .nav-links{ display:flex; gap:34px; align-items:center; }
+  .nav-links a{
+    font-size:14.5px; font-weight:500; color:var(--ink-soft);
+    transition:color .2s ease;
+    position:relative;
+  }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-cta{ display:flex; align-items:center; gap:14px; }
+  .nav-phone{ font-family:'IBM Plex Mono',monospace; font-size:13.5px; color:var(--ink-soft); display:none; }
+  .burger{ display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; }
+  .burger span{ width:22px; height:2px; background:var(--ink); display:block; }
+  .mobile-menu{
+    display:none; flex-direction:column; gap:2px;
+    background:var(--paper); border-bottom:1px solid var(--line);
+    padding:8px 28px 20px;
+  }
+  .mobile-menu a{ padding:12px 0; font-size:15px; border-bottom:1px solid var(--line-soft); color:var(--ink-soft); }
+  .mobile-menu.open{ display:flex; }
+  @media(max-width:900px){
+    .nav-links{ display:none; }
+    .burger{ display:flex; }
+    .nav-phone{ display:none !important; }
+  }
+  @media(min-width:901px){ .nav-phone{ display:block; } }
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:168px 0 90px;
+    position:relative;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(76,122,82,0.14), transparent 60%),
+      radial-gradient(ellipse 700px 500px at -5% 20%, rgba(193,101,59,0.10), transparent 60%);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:60px; align-items:center;
+  }
+  @media(max-width:960px){ .hero-grid{ grid-template-columns:1fr; gap:50px; } }
+  .hero-title{
+    font-size:clamp(34px, 5vw, 58px);
+    line-height:1.06;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    margin-bottom:24px;
+  }
+  .hero-title em{ font-style:normal; color:var(--moss-deep); position:relative; }
+  .hero-sub{
+    font-size:17px; color:var(--ink-soft); max-width:520px; margin-bottom:34px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:44px; }
+  .hero-microstats{
+    display:flex; gap:28px; flex-wrap:wrap; padding-top:26px; border-top:1px solid var(--line);
+  }
+  .microstat{ }
+  .microstat b{ font-family:'Space Grotesk',sans-serif; font-size:22px; display:block; }
+  .microstat span{ font-size:12.5px; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; }
+
+  /* Network visual */
+  .network-card{
+    background:var(--ink); border-radius:22px; padding:26px 22px 20px;
+    box-shadow:0 20px 50px rgba(16,36,28,0.3);
+    position:relative; overflow:hidden;
+  }
+  .network-card-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; padding:0 4px;}
+  .network-card-head .mono{ color:rgba(241,243,234,0.55); font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; }
+  .live-dot{ width:7px; height:7px; border-radius:50%; background:#6FD07E; display:inline-block; margin-right:6px; animation:pulseDot 1.8s infinite; }
+  @keyframes pulseDot{ 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+  .network-svg{ width:100%; height:auto; display:block; }
+  .network-legend{ display:flex; gap:16px; flex-wrap:wrap; padding:14px 4px 4px; }
+  .legend-item{ display:flex; align-items:center; gap:7px; font-size:11.5px; color:rgba(241,243,234,0.7); font-family:'IBM Plex Mono',monospace; }
+  .legend-dot{ width:8px; height:8px; border-radius:50%; }
+
+  /* ===== Stats band ===== */
+  .stats-band{ background:var(--ink); color:var(--paper); }
+  .stats-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  }
+  @media(max-width:900px){ .stats-grid{ grid-template-columns:repeat(2,1fr); } }
+  .stat-cell{
+    padding:44px 30px; border-left:1px solid rgba(241,243,234,0.12);
+  }
+  .stat-cell:first-child{ border-left:none; }
+  @media(max-width:900px){
+    .stat-cell:nth-child(odd){ border-left:none; }
+    .stat-cell{ border-top:1px solid rgba(241,243,234,0.12); }
+    .stat-cell:nth-child(1),.stat-cell:nth-child(2){ border-top:none; }
+  }
+  .stat-num{ font-family:'Space Grotesk',sans-serif; font-size:clamp(30px,4vw,42px); font-weight:700; color:var(--gold); }
+  .stat-label{ font-size:14px; color:rgba(241,243,234,0.75); margin-top:8px; max-width:220px; }
+
+  /* ===== Section heads ===== */
+  .section-head{ max-width:680px; margin-bottom:56px; }
+  .section-title{ font-size:clamp(26px,3.4vw,38px); font-weight:700; letter-spacing:-0.01em; margin-bottom:16px; }
+  .section-desc{ color:var(--ink-soft); font-size:16px; }
+
+  /* ===== Challenge section ===== */
+  .challenge{ background:var(--paper-alt); }
+  .challenge-callout{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:36px; margin-bottom:44px;
+    display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:center;
+  }
+  @media(max-width:760px){ .challenge-callout{ grid-template-columns:1fr; } }
+  .challenge-callout h3{ font-family:'Space Grotesk',sans-serif; font-size:22px; line-height:1.35; }
+  .challenge-callout .clay-line{ color:var(--clay-deep); font-weight:700; }
+  .impact-list{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  @media(max-width:860px){ .impact-list{ grid-template-columns:repeat(2,1fr); } }
+  .impact-item{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:20px 18px; font-size:14.5px; font-weight:500; color:var(--ink-soft);
+    display:flex; align-items:flex-start; gap:10px;
+  }
+  .impact-item svg{ flex-shrink:0; margin-top:2px; }
+  .challenge-foot{ margin-top:40px; text-align:center; }
+  .challenge-foot p{ font-family:'Space Grotesk',sans-serif; font-size:20px; }
+  .challenge-foot .strike{ color:var(--ink-faint); text-decoration:line-through; }
+  .challenge-foot .keep{ color:var(--moss-deep); font-weight:700; }
+
+  /* ===== Solution / transform diagram ===== */
+  .solution-grid{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:60px; align-items:center; }
+  @media(max-width:960px){ .solution-grid{ grid-template-columns:1fr; } }
+  .transform-card{
+    background:var(--ink); border-radius:20px; padding:34px 26px; box-shadow:var(--shadow);
+  }
+  .transform-row{ display:flex; align-items:center; justify-content:center; gap:14px; padding:14px 0; }
+  .bag-box{ text-align:center; flex:1; }
+  .bag-box .bag-caption{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(241,243,234,0.6); margin-top:10px; text-transform:uppercase; letter-spacing:0.06em;}
+  .arrow-mid{ flex-shrink:0; }
+  .solution-copy p{ color:var(--ink-soft); margin-bottom:16px; font-size:16px; }
+  .solution-copy strong{ color:var(--ink); }
+  .price-chip{
+    display:inline-flex; align-items:center; gap:10px; background:var(--paper-alt);
+    border:1px solid var(--line); border-radius:999px; padding:10px 18px; margin-top:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--moss-deep); font-weight:500;
+  }
+
+  /* ===== Deliver grid ===== */
+  .deliver-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media(max-width:900px){ .deliver-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:600px){ .deliver-grid{ grid-template-columns:1fr; } }
+  .deliver-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px 24px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .deliver-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); border-color:transparent; }
+  .deliver-icon{
+    width:44px; height:44px; border-radius:11px; background:var(--paper-alt);
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+  }
+  .deliver-card h4{ font-family:'Space Grotesk',sans-serif; font-size:17px; margin-bottom:10px; }
+  .deliver-card p{ font-size:14.5px; color:var(--ink-soft); }
+
+  /* ===== Why us ===== */
+  .why{ background:var(--ink); color:var(--paper); }
+  .why .section-desc{ color:rgba(241,243,234,0.65); }
+  .why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(241,243,234,0.12); border:1px solid rgba(241,243,234,0.12); border-radius:var(--radius); overflow:hidden; }
+  @media(max-width:860px){ .why-grid{ grid-template-columns:1fr 1fr; } }
+  @media(max-width:600px){ .why-grid{ grid-template-columns:1fr; } }
+  .why-card{ background:var(--ink); padding:32px 26px; }
+  .why-card .num{ font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:13px; margin-bottom:14px; display:block; }
+  .why-card h4{ font-family:'Space Grotesk',sans-serif; font-size:17.5px; margin-bottom:10px; }
+  .why-card p{ font-size:14.5px; color:rgba(241,243,234,0.7); }
+
+  /* ===== Founding partner CTA band ===== */
+  .founding{
+    background:linear-gradient(135deg, var(--moss-deep), #223A26);
+    color:var(--paper); position:relative; overflow:hidden;
+  }
+  .founding::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 80% 20%, rgba(201,154,58,0.25), transparent 55%);
+  }
+  .founding-inner{ position:relative; text-align:center; max-width:780px; margin:0 auto; }
+  .founding .eyebrow{ color:var(--gold); justify-content:center; }
+  .founding .eyebrow::before{ background:var(--gold); }
+  .founding h2{ font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,4vw,42px); margin-bottom:20px; line-height:1.2; }
+  .founding p{ color:rgba(241,243,234,0.82); font-size:16.5px; margin-bottom:16px; }
+  .founding-numbers{ display:flex; justify-content:center; gap:50px; margin:36px 0 40px; flex-wrap:wrap; }
+  .founding-numbers .stat-num{ color:var(--gold); }
+  .founding-numbers .stat-label{ color:rgba(241,243,234,0.75); }
+  .founding-ctas{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+
+  /* ===== Process ===== */
+  .process-list{ display:flex; flex-direction:column; }
+  .process-item{
+    display:grid; grid-template-columns:90px 1fr; gap:24px; padding:30px 0; border-top:1px solid var(--line);
+  }
+  .process-item:last-child{ border-bottom:1px solid var(--line); }
+  .process-num{ font-family:'Space Grotesk',sans-serif; font-size:34px; font-weight:700; color:var(--line); }
+  .process-body h4{ font-family:'Space Grotesk',sans-serif; font-size:19px; margin-bottom:8px; }
+  .process-body p{ color:var(--ink-soft); font-size:15px; max-width:600px; }
+  @media(max-width:600px){ .process-item{ grid-template-columns:50px 1fr; gap:16px; } .process-num{ font-size:24px; } }
+
+  /* ===== FAQ ===== */
+  .faq-item{ border-top:1px solid var(--line); }
+  .faq-item:last-child{ border-bottom:1px solid var(--line); }
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+    padding:22px 4px; font-family:'Space Grotesk',sans-serif; font-size:16.5px; font-weight:600; color:var(--ink);
+  }
+  .faq-plus{ width:22px; height:22px; flex-shrink:0; position:relative; }
+  .faq-plus::before, .faq-plus::after{ content:""; position:absolute; background:var(--ink); border-radius:2px; }
+  .faq-plus::before{ width:100%; height:2px; top:50%; left:0; transform:translateY(-50%); }
+  .faq-plus::after{ height:100%; width:2px; left:50%; top:0; transform:translateX(-50%); transition:transform .3s ease; }
+  .faq-item.open .faq-plus::after{ transform:translateX(-50%) rotate(90deg); opacity:0; }
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .faq-a p{ padding:0 4px 22px; color:var(--ink-soft); font-size:15px; max-width:640px; }
+
+  /* ===== Final CTA / Footer ===== */
+  .final-cta{ background:var(--paper-alt); text-align:center; }
+  .final-cta h2{ font-family:'Space Grotesk',sans-serif; font-size:clamp(26px,4vw,40px); max-width:760px; margin:0 auto 18px; }
+  .final-cta p{ color:var(--ink-soft); max-width:600px; margin:0 auto 34px; }
+  .final-ctas{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+
+  footer{ background:var(--ink); color:rgba(241,243,234,0.7); padding:56px 0 30px; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; margin-bottom:44px; }
+  @media(max-width:700px){ .footer-grid{ grid-template-columns:1fr; gap:32px; } }
+  .footer-logo{ display:flex; align-items:center; gap:10px; color:var(--paper); margin-bottom:14px; }
+  .footer-brand p{ font-size:14.5px; max-width:320px; }
+  .footer-col h5{ font-family:'IBM Plex Mono',monospace; text-transform:uppercase; font-size:12px; letter-spacing:0.08em; color:rgba(241,243,234,0.45); margin-bottom:16px; }
+  .footer-col a, .footer-col p{ display:block; font-size:14.5px; margin-bottom:10px; color:rgba(241,243,234,0.78); }
+  .footer-col a:hover{ color:var(--gold); }
+  .footer-bottom{ border-top:1px solid rgba(241,243,234,0.12); padding-top:24px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color:rgba(241,243,234,0.45); }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 6 8.5 6 13.5C6 17.09 8.69 20 12 20C15.31 20 18 17.09 18 13.5C18 8.5 12 2 12 2Z" stroke="#F1F3EA" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </span>
+      <span>BottlePure<span style="color:var(--moss-deep)">Envision</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#challenge">The Challenge</a>
+      <a href="#solution">Our Solution</a>
+      <a href="#impact">Impact</a>
+      <a href="#process">Process</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <span class="nav-phone">+91 93011 52620</span>
+      <a href="mailto:bottlepureenvision@gmail.com" class="btn btn-primary" style="padding:11px 20px; font-size:13.5px;">Schedule a Meeting</a>
+      <button class="burger" id="burgerBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#challenge">The Challenge</a>
+    <a href="#solution">Our Solution</a>
+    <a href="#impact">Impact</a>
+    <a href="#process">Process</a>
+    <a href="#faq">FAQ</a>
+    <a href="mailto:bottlepureenvision@gmail.com">Contact Us</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Plastic Freedom Mission</div>
+        <h1 class="hero-title display">Building India's <em>largest plastic&nbsp;reduction</em> network</h1>
+        <p class="hero-sub">We turn corporate CSR investment into measurable environmental impact — replacing conventional single-use plastic carry bags with CPCB-certified compostable alternatives, at the point they're used the most.</p>
+        <div class="hero-ctas">
+          <a href="mailto:bottlepureenvision@gmail.com" class="btn btn-clay">Schedule a Meeting</a>
+          <a href="mailto:bottlepureenvision@gmail.com?subject=Project%20Proposal%20Request" class="btn btn-ghost">Request a Project Proposal</a>
+        </div>
+        <div class="hero-microstats">
+          <div class="microstat"><b class="display">100+</b><span>Manufacturing Partners</span></div>
+          <div class="microstat"><b class="display">150+</b><span>Distribution Partners</span></div>
+          <div class="microstat"><b class="display">1M+</b><span>Retail Coverage</span></div>
+        </div>
+      </div>
+
+      <div class="network-card reveal">
+        <div class="network-card-head">
+          <span class="mono"><span class="live-dot"></span>Live execution network</span>
+          <span class="mono">India</span>
+        </div>
+        <svg class="network-svg" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#4C7A52" stroke-opacity="0.45" stroke-width="1">
+            <line x1="80" y1="70" x2="200" y2="110"/>
+            <line x1="200" y1="110" x2="330" y2="60"/>
+            <line x1="200" y1="110" x2="150" y2="190"/>
+            <line x1="200" y1="110" x2="290" y2="180"/>
+            <line x1="150" y1="190" x2="70" y2="220"/>
+            <line x1="150" y1="190" x2="230" y2="250"/>
+            <line x1="290" y1="180" x2="350" y2="230"/>
+            <line x1="290" y1="180" x2="230" y2="250"/>
+            <line x1="80" y1="70" x2="150" y2="190"/>
+            <line x1="330" y1="60" x2="290" y2="180"/>
+          </g>
+          <!-- manufacturing partners (moss) -->
+          <circle cx="80" cy="70" r="6" fill="#4C7A52"/>
+          <circle cx="200" cy="110" r="7" fill="#4C7A52"/>
+          <circle cx="330" cy="60" r="6" fill="#4C7A52"/>
+          <!-- distribution partners (gold) -->
+          <circle cx="150" cy="190" r="5.5" fill="#C99A3A"/>
+          <circle cx="290" cy="180" r="5.5" fill="#C99A3A"/>
+          <!-- retail nodes (clay), smaller, pulsing -->
+          <circle cx="70" cy="220" r="4" fill="#C1653B"><animate attributeName="opacity" values="1;0.35;1" dur="2.4s" repeatCount="indefinite"/></circle>
+          <circle cx="230" cy="250" r="4" fill="#C1653B"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.1s" repeatCount="indefinite"/></circle>
+          <circle cx="350" cy="230" r="4" fill="#C1653B"><animate attributeName="opacity" values="1;0.35;1" dur="2.7s" repeatCount="indefinite"/></circle>
+          <circle cx="30" cy="130" r="4" fill="#C1653B"><animate attributeName="opacity" values="0.35;1;0.35" dur="1.9s" repeatCount="indefinite"/></circle>
+          <circle cx="380" cy="120" r="4" fill="#C1653B"><animate attributeName="opacity" values="1;0.4;1" dur="2.3s" repeatCount="indefinite"/></circle>
+        </svg>
+        <div class="network-legend">
+          <span class="legend-item"><span class="legend-dot" style="background:#4C7A52"></span>Manufacturing</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#C99A3A"></span>Distribution</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#C1653B"></span>Retail coverage</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <section class="stats-band" id="impact">
+    <div class="wrap stats-grid">
+      <div class="stat-cell reveal">
+        <div class="stat-num display">100+</div>
+        <div class="stat-label">CPCB-certified manufacturing partners ensuring scalable, reliable production.</div>
+      </div>
+      <div class="stat-cell reveal">
+        <div class="stat-num display">150+</div>
+        <div class="stat-label">Field distribution partners delivering last-mile execution and documentation.</div>
+      </div>
+      <div class="stat-cell reveal">
+        <div class="stat-num display">1,000,000+</div>
+        <div class="stat-label">Potential retail coverage through structured nationwide distribution.</div>
+      </div>
+      <div class="stat-cell reveal">
+        <div class="stat-num display">100+</div>
+        <div class="stat-label">Mission partners replacing millions of plastic bags through measurable CSR execution.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHALLENGE -->
+  <section class="challenge section-pad" id="challenge">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The Challenge</div>
+        <h2 class="section-title display">It isn't plastic. It's plastic that's never economically collected.</h2>
+        <p class="section-desc">India generates over 4 million tonnes of plastic waste every year. A large share enters formal and informal recycling systems — but millions of tonnes still escape effective collection, polluting streets, drains, rivers, and ecosystems across the country.</p>
+      </div>
+
+      <div class="challenge-callout reveal">
+        <h3>Lightweight single-use carry bags are used every day by millions of grocery stores, fruit &amp; vegetable vendors, flower vendors, and self-employed micro retailers — because they remain the <span class="clay-line">lowest-cost packaging option available.</span></h3>
+        <p style="color:var(--ink-soft); font-size:15px;">Once discarded, these bags have little recovery value. That makes collection economically difficult, and leaves them outside the recycling system entirely — where the real damage begins.</p>
+      </div>
+
+      <div class="impact-list">
+        <div class="impact-item reveal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C1653B" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>Blocked drains &amp; urban flooding</div>
+        <div class="impact-item reveal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C1653B" stroke-width="2"><path d="M2 12c4-6 16-6 20 0"/></svg>Plastic leakage into rivers &amp; lakes</div>
+        <div class="impact-item reveal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C1653B" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>Harm to animals &amp; wildlife</div>
+        <div class="impact-item reveal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C1653B" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"/></svg>Long-term microplastic pollution</div>
+        <div class="impact-item reveal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C1653B" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>Increased landfill burden</div>
+        <div class="impact-item reveal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C1653B" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>Higher municipal waste costs</div>
+        <div class="impact-item reveal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C1653B" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>Persistent visual pollution</div>
+        <div class="impact-item reveal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C1653B" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>Little to no recovery value</div>
+      </div>
+
+      <div class="challenge-foot">
+        <p><span class="strike">The challenge is not awareness.</span><br><span class="keep">The challenge is replacing plastic where it is used the most.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY ALTERNATIVES DON'T SCALE -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Why Existing Alternatives Don't Scale</div>
+        <h2 class="section-title display">Certified compostable bags already exist. The challenge is affordability.</h2>
+        <p class="section-desc">For millions of low-margin micro retailers, even a small increase in packaging cost directly affects daily earnings. Sustainable alternatives struggle at scale — not because they're unavailable, but because they aren't economically accessible at the point of use.</p>
+      </div>
+      <div class="challenge-callout reveal" style="grid-template-columns:1fr;">
+        <p style="font-family:'Space Grotesk',sans-serif; font-size:19px; line-height:1.5;">This is where corporate leadership creates measurable change — by making sustainable alternatives affordable at the point of use, CSR can help replace millions of conventional plastic carry bags with certified compostable alternatives.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="section-pad" id="solution" style="background:var(--paper-alt);">
+    <div class="wrap solution-grid">
+      <div class="transform-card reveal">
+        <div class="mono" style="color:rgba(241,243,234,0.55); font-size:11.5px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">At the point of consumption</div>
+        <div class="transform-row">
+          <div class="bag-box">
+            <svg width="70" height="80" viewBox="0 0 70 80" fill="none">
+              <path d="M15 25 L20 10 H50 L55 25" stroke="#8B8F86" stroke-width="2.5" fill="none"/>
+              <rect x="10" y="25" width="50" height="45" rx="4" fill="none" stroke="#8B8F86" stroke-width="2.5"/>
+              <line x1="10" y1="40" x2="60" y2="40" stroke="#8B8F86" stroke-width="1" stroke-dasharray="3 3"/>
+            </svg>
+            <div class="bag-caption" style="color:#A6ABA0;">Conventional plastic</div>
+          </div>
+          <div class="arrow-mid">
+            <svg width="42" height="20" viewBox="0 0 42 20" fill="none"><path d="M0 10 H36 M28 2 L38 10 L28 18" stroke="#C99A3A" stroke-width="2" stroke-dasharray="4 3"/></svg>
+          </div>
+          <div class="bag-box">
+            <svg width="70" height="80" viewBox="0 0 70 80" fill="none">
+              <path d="M15 25 L20 10 H50 L55 25" stroke="#6FD07E" stroke-width="2.5" fill="none"/>
+              <rect x="10" y="25" width="50" height="45" rx="4" fill="none" stroke="#6FD07E" stroke-width="2.5"/>
+              <path d="M35 38 C 30 45, 30 52, 35 58 C 40 52, 40 45, 35 38 Z" fill="#6FD07E" fill-opacity="0.5"/>
+            </svg>
+            <div class="bag-caption" style="color:#9FE3A8;">CPCB-certified compostable</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-copy">
+        <div class="eyebrow">Our Solution</div>
+        <h2 class="section-title display" style="margin-bottom:20px;">We don't run campaigns. We replace plastic where it's consumed.</h2>
+        <p>Using corporate CSR funding, we support the manufacturing of CPCB-certified compostable carry bags through our nationwide network of <strong>100+ manufacturing partners</strong>.</p>
+        <p>Our <strong>150+ Field Distribution Partners</strong> identify eligible small retailers, manage last-mile delivery, maintain distribution records, and collect project data for transparent reporting.</p>
+        <p>Retailers receive the bags at no product cost and pay only a nominal delivery charge — removing the biggest barrier to adopting sustainable packaging. Each bag carries a simple CSR project acknowledgment of the supporting organization.</p>
+        <div class="price-chip">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4C7A52" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Full execution delivered at ₹0.50 – ₹1.20 per bag
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT CSR DELIVERS -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What Your CSR Investment Delivers</div>
+        <h2 class="section-title display">Every rupee becomes a transparent, documented project.</h2>
+        <p class="section-desc">From plastic reduction to ESG-ready reporting, every funded bag is tied to real, measurable outcomes.</p>
+      </div>
+      <div class="deliver-grid">
+        <div class="deliver-card reveal">
+          <div class="deliver-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C7A52" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h4>Plastic reduction</h4><p>Every funded compostable bag helps avoid one conventional plastic bag at the point of consumption.</p>
+        </div>
+        <div class="deliver-card reveal">
+          <div class="deliver-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C7A52" stroke-width="2"><path d="M9 2h6l1 4H8l1-4zM6 6h12l1 16H5L6 6z"/></svg></div>
+          <h4>Complete project documentation</h4><p>Manufacturing, distribution, beneficiary records, and field activities — all digitally documented.</p>
+        </div>
+        <div class="deliver-card reveal">
+          <div class="deliver-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C7A52" stroke-width="2"><path d="M4 19V5M10 19V9M16 19v-6M4 19h16"/></svg></div>
+          <h4>CSR-ready reports</h4><p>Professionally structured reports for CSR disclosures, internal reviews, and annual reporting.</p>
+        </div>
+        <div class="deliver-card reveal">
+          <div class="deliver-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C7A52" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h4>Impact dashboard</h4><p>Monitor project progress, distribution status, retail coverage, and execution metrics centrally.</p>
+        </div>
+        <div class="deliver-card reveal">
+          <div class="deliver-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C7A52" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg></div>
+          <h4>ESG &amp; SDG support</h4><p>Project data organized for ESG disclosures and mapped to relevant Sustainable Development Goals.</p>
+        </div>
+        <div class="deliver-card reveal">
+          <div class="deliver-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C7A52" stroke-width="2"><path d="M3 3v18h18M8 17V10M13 17V6M18 17v-4"/></svg></div>
+          <h4>Environmental impact insights</h4><p>Project-based estimates of plastic reduction and other indicators, generated from execution data.</p>
+        </div>
+        <div class="deliver-card reveal">
+          <div class="deliver-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C7A52" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2M10 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h4>Community presence</h4><p>Your CSR initiative reaches local retailers and communities through visible, on-ground action.</p>
+        </div>
+        <div class="deliver-card reveal">
+          <div class="deliver-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C7A52" stroke-width="2"><path d="M12 2l2.5 6.5H21l-5.5 4 2 6.5L12 15l-5.5 4 2-6.5L3 8.5h6.5z"/></svg></div>
+          <h4>Responsible brand recognition</h4><p>Each funded bag carries a CSR project acknowledgment — connecting you with real impact, not advertising.</p>
+        </div>
+        <div class="deliver-card reveal">
+          <div class="deliver-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C7A52" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <h4>Complete transparency</h4><p>Every funded bag is linked to documented manufacturing, distribution, and project records.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section-pad why">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Why BottlePure Envision</div>
+        <h2 class="section-title display">Purpose-built to deliver measurable plastic reduction.</h2>
+        <p class="section-desc">A transparent, technology-driven CSR execution platform — built for scale.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal"><span class="num mono">01</span><h4>Nationwide execution network</h4><p>100+ CPCB-certified manufacturing partners and 150+ field distribution partners across India's leading cities.</p></div>
+        <div class="why-card reveal"><span class="num mono">02</span><h4>Cost-efficient impact</h4><p>Manufacturing, distribution, documentation, tracking &amp; reporting — at just ₹0.50–₹1.20 per funded bag.</p></div>
+        <div class="why-card reveal"><span class="num mono">03</span><h4>Technology-driven transparency</h4><p>Every project is supported by structured data, digital documentation, and a centralized dashboard.</p></div>
+        <div class="why-card reveal"><span class="num mono">04</span><h4>End-to-end execution</h4><p>From project planning and manufacturing to last-mile distribution and final reporting — one platform.</p></div>
+        <div class="why-card reveal"><span class="num mono">05</span><h4>Scalable by design</h4><p>One city or multiple states — the same execution framework scales without added complexity.</p></div>
+        <div class="why-card reveal"><span class="num mono">06</span><h4>Built for corporate CSR</h4><p>Measurable impact, transparent documentation, and reporting that supports governance requirements.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDING PARTNER CTA -->
+  <section class="section-pad founding">
+    <div class="wrap founding-inner">
+      <div class="eyebrow">Founding Mission Partners</div>
+      <h2 class="display">Become a Founding Mission Partner</h2>
+      <p>The Plastic Freedom Mission is building a nationwide coalition of 100 Founding Mission Partners committed to reducing 100 million conventional plastic carry bags every year.</p>
+      <p>Together, this mission aims to prevent 10 billion plastic carry bags from entering India's waste stream — every year.</p>
+      <div class="founding-numbers">
+        <div><div class="stat-num display">100</div><div class="stat-label">Founding Mission Partners</div></div>
+        <div><div class="stat-num display">100M</div><div class="stat-label">Bags reduced / year, target</div></div>
+        <div><div class="stat-num display">10B</div><div class="stat-label">Plastic bags prevented / year</div></div>
+      </div>
+      <div class="founding-ctas">
+        <a href="mailto:bottlepureenvision@gmail.com?subject=Schedule%20a%20Meeting" class="btn btn-on-dark">Schedule a Meeting</a>
+        <a href="mailto:bottlepureenvision@gmail.com?subject=Project%20Proposal%20Request" class="btn btn-outline-dark">Request a Project Proposal</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section-pad" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Our Process</div>
+        <h2 class="section-title display">From consultation to CSR-ready reporting.</h2>
+      </div>
+      <div class="process-list">
+        <div class="process-item reveal"><div class="process-num display">01</div><div class="process-body"><h4>Consultation</h4><p>Understand your CSR objectives, geography, budget, and project scope.</p></div></div>
+        <div class="process-item reveal"><div class="process-num display">02</div><div class="process-body"><h4>Project planning</h4><p>Define execution plan, target beneficiaries, timelines, and expected impact.</p></div></div>
+        <div class="process-item reveal"><div class="process-num display">03</div><div class="process-body"><h4>Manufacturing</h4><p>CSR funds support production of CPCB-certified compostable carry bags through our manufacturing network.</p></div></div>
+        <div class="process-item reveal"><div class="process-num display">04</div><div class="process-body"><h4>Distribution</h4><p>Field Distribution Partners deliver bags to eligible beneficiaries while collecting project records.</p></div></div>
+        <div class="process-item reveal"><div class="process-num display">05</div><div class="process-body"><h4>Tracking &amp; verification</h4><p>Manufacturing, distribution, and project activities are digitally recorded through our technology platform.</p></div></div>
+        <div class="process-item reveal"><div class="process-num display">06</div><div class="process-body"><h4>Reporting</h4><p>Receive complete project documentation, impact reports, dashboard access, and CSR-ready reporting.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-pad" id="faq" style="background:var(--paper-alt);">
+    <div class="wrap" style="max-width:840px;">
+      <div class="section-head" style="max-width:100%;">
+        <div class="eyebrow">Frequently Asked Questions</div>
+        <h2 class="section-title display">Common questions, answered.</h2>
+      </div>
+      <div id="faqList">
+        <div class="faq-item">
+          <button class="faq-q">Who can partner with BottlePure Envision?<span class="faq-plus"></span></button>
+          <div class="faq-a"><p>Any organization looking to create measurable environmental impact through CSR.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Are the carry bags CPCB certified?<span class="faq-plus"></span></button>
+          <div class="faq-a"><p>Yes. We work with CPCB-certified compostable carry bag manufacturing partners.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How is project impact measured?<span class="faq-plus"></span></button>
+          <div class="faq-a"><p>Through documented manufacturing, distribution, beneficiary records, and project analytics.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can projects be executed in multiple cities?<span class="faq-plus"></span></button>
+          <div class="faq-a"><p>Yes. Our execution network supports scalable implementation across India.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Will we receive project reports?<span class="faq-plus"></span></button>
+          <div class="faq-a"><p>Yes. Every project includes structured documentation and CSR-ready reporting.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can projects be customized?<span class="faq-plus"></span></button>
+          <div class="faq-a"><p>Yes. Project scale, geography, budget, and execution can be tailored to your CSR objectives.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section-pad final-cta">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center;">Join The Mission</div>
+      <h2 class="display">Become a Founding Mission Partner in India's largest plastic reduction initiative.</h2>
+      <p>Together, we can replace millions of conventional plastic carry bags with certified compostable alternatives — through transparent, measurable, and scalable CSR execution.</p>
+      <div class="final-ctas">
+        <a href="mailto:bottlepureenvision@gmail.com?subject=Schedule%20a%20Meeting" class="btn btn-clay">Schedule a Meeting</a>
+        <a href="mailto:bottlepureenvision@gmail.com?subject=Project%20Proposal%20Request" class="btn btn-primary">Request a Project Proposal</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 6 8.5 6 13.5C6 17.09 8.69 20 12 20C15.31 20 18 17.09 18 13.5C18 8.5 12 2 12 2Z" stroke="#F1F3EA" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+          <span class="display" style="font-weight:700; font-size:16px;">BottlePure Envision</span>
+        </div>
+        <p>A Plastic Reduction Platform and CSR Execution Partner, transforming corporate CSR investment into measurable environmental impact across India.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <a href="#challenge">The Challenge</a>
+        <a href="#solution">Our Solution</a>
+        <a href="#process">Our Process</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:+919301152620">+91 93011 52620</a>
+        <a href="mailto:bottlepureenvision@gmail.com">bottlepureenvision@gmail.com</a>
+        <p>Pan-India Execution Network</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> BottlePure Envision. All rights reserved.</span>
+      <span>Plastic Freedom Mission</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu
+  const burger = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Header background on scroll
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(16,36,28,0.08)' : 'none';
+  });
+</script>
+
+</body>
+</html>
